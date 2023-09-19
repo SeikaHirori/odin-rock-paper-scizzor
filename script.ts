@@ -10,7 +10,7 @@ class RockPaperScissor {
         this.currentRound = 0;
         this.playerOneWins = 0;
         this.computerWins = 0;
-        this.rpsChoices = ["rock", "paper", "scizzor"];
+        this.rpsChoices = ["rock", "paper", "scissor"];
     }
 
     getComputerChoice(): string {
@@ -39,8 +39,9 @@ class RockPaperScissor {
                         this.playerOneWins +=1;
                         break;
                     default:
-                        console.log()
-                }
+                        console.log(`Something went wrong.1`);
+                    };
+                break;
             case "paper":
                 switch (computerSelection.toLowerCase()) {
                     case "rock":
@@ -55,8 +56,9 @@ class RockPaperScissor {
                         this.computerWins += 1;
                         break;
                     default:
-                        console.log()
-                }
+                        console.log(`Something went wrong.2`);
+                    };
+                break;
             case "scissor":
                 switch (computerSelection.toLowerCase()) {
                     case "rock":
@@ -69,10 +71,11 @@ class RockPaperScissor {
                         message = "Tie!";
                         break;
                     default:
-                        console.log()
-                }
+                        console.log(`Something went wrong.3`);
+                    };
+                break;
             default:
-                console.log(`Something went wrong`);
+                console.log(`Something went wrong.`);
                 break;
         }
 
@@ -81,3 +84,9 @@ class RockPaperScissor {
         return message;
     }
 };
+
+const playerSelection = "rock";
+
+const currentRPS: RockPaperScissor = new RockPaperScissor();
+
+console.log(currentRPS.playRound(playerSelection, currentRPS.getComputerChoice()))
