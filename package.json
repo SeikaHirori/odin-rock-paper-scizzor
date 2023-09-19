@@ -1,5 +1,11 @@
 {
-    "scripts": {
-        "test": "jest"
-    }
+  "scripts": {
+    "test": "jest"
+  },
+  "name": "odin-rock-paper-scizzor",
+  "version": "1.0.0",
+  "description": "RPS only in the command line",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
