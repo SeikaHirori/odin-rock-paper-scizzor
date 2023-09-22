@@ -13,6 +13,19 @@ class RockPaperScissor {
         this.rpsChoices = ["rock", "paper", "scissor"];
     }
 
+    startGame(): any {
+        while (this.currentRound < 5) {
+
+            const playerSelection:string = prompt(`What choice will you pick?`);
+
+            const computerSelection: string = this.getComputerChoice()
+
+            const results: string = this.playRound(playerSelection, computerSelection);
+
+            this.currentRound += 1;
+        }
+    }
+
     getComputerChoice(): string {
 
         const randomChoice: number = Math.floor(Math.random() * this.rpsChoices.length);
@@ -78,8 +91,6 @@ class RockPaperScissor {
                 console.log(`Something went wrong.`);
                 break;
         }
-
-        this.currentRound += 1;
 
         return message;
     }
