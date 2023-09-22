@@ -8,5 +8,15 @@
         "preserveConstEnums": true,
         "sourceMap": true
     },
-    
+
+    "multiline": {
+        "delimiter": "semi",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "semi",
+        "requireLast": false
+      },
+      "multilineDetection": "brackets",
+
 }

@@ -8,11 +8,28 @@ class RockPaperScissor {
     }
     startGame() {
         while (this.currentRound < 5) {
-            const playerSelection = prompt(`What choice will you pick?`);
+            console.log(`Round ${this.currentRound + 1}`);
+            let playerSelection = prompt(`What choice will you pick?`, "");
+            if (playerSelection === null) {
+                console.log(`User quit the game`);
+                return;
+            }
+            if (playerSelection.trim() === "") {
+                console.log("Input was empty.");
+                continue;
+            }
+            if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
+                playerSelection = playerSelection.toLowerCase();
+            }
+            else {
+                console.log(`Invalid input.`);
+                continue;
+            }
             const computerSelection = this.getComputerChoice();
             const results = this.playRound(playerSelection, computerSelection);
             this.currentRound += 1;
         }
+        this.endGameResults();
     }
     getComputerChoice() {
         const randomChoice = Math.floor(Math.random() * this.rpsChoices.length);
@@ -79,9 +96,26 @@ class RockPaperScissor {
         }
         return message;
     }
+    endGameResults() {
+        let gameWinner;
+        if (this.playerOneWins > this.computerWins) {
+            gameWinner = "Player";
+        }
+        else if (this.playerOneWins < this.computerWins) {
+            gameWinner = "Computer";
+        }
+        else {
+            gameWinner = "No victor";
+        }
+        console.log(`Final Scores: \n
+        Player: ${this.playerOneWins} 
+        Computer: ${this.computerWins}
+
+        Winner: ${gameWinner}
+        `);
+    }
 }
 ;
-const playerSelection = "rock";
 const currentRPS = new RockPaperScissor();
-console.log(currentRPS.playRound(playerSelection, currentRPS.getComputerChoice()));
+currentRPS.startGame();
 //# sourceMappingURL=script.js.map

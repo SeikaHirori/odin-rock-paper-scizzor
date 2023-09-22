@@ -15,8 +15,27 @@ class RockPaperScissor {
 
     startGame(): any {
         while (this.currentRound < 5) {
+            console.log(`Round ${this.currentRound + 1}`)
 
-            const playerSelection:string = prompt(`What choice will you pick?`);
+            let playerSelection = prompt(`What choice will you pick?`, "");
+            
+            if (playerSelection === null) {
+                console.log(`User quit the game`);
+                return;
+            }
+
+
+            if (playerSelection.trim() === "") {
+                console.log("Input was empty.");
+                continue;
+            }
+
+            if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
+                playerSelection = playerSelection.toLowerCase();
+            } else {
+                console.log(`Invalid input.`)
+                continue;
+            }
 
             const computerSelection: string = this.getComputerChoice()
 
@@ -24,6 +43,8 @@ class RockPaperScissor {
 
             this.currentRound += 1;
         }
+
+        this.endGameResults()
     }
 
     getComputerChoice(): string {
@@ -94,10 +115,26 @@ class RockPaperScissor {
 
         return message;
     }
-};
 
-const playerSelection = "rock";
+    endGameResults():void {
+        let gameWinner: string;
+        if (this.playerOneWins > this.computerWins) {
+            gameWinner = "Player";
+        } else if (this.playerOneWins < this.computerWins) {
+            gameWinner = "Computer";
+        } else {
+            gameWinner = "No victor"
+        }
+
+        console.log(`Final Scores: \n
+        Player: ${this.playerOneWins} 
+        Computer: ${this.computerWins}
+
+        Winner: ${gameWinner}
+        `);
+    }
+};
 
 const currentRPS: RockPaperScissor = new RockPaperScissor();
 
-console.log(currentRPS.playRound(playerSelection, currentRPS.getComputerChoice()))
+currentRPS.startGame()
