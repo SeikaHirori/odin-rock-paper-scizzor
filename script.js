@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RockPaperScissor = void 0;
 class RockPaperScissor {
     constructor() {
         this.currentRound = 0;
@@ -115,6 +117,7 @@ class RockPaperScissor {
         `);
     }
 }
+exports.RockPaperScissor = RockPaperScissor;
 ;
 const currentRPS = new RockPaperScissor();
 currentRPS.startGame();

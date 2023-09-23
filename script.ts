@@ -138,3 +138,7 @@ class RockPaperScissor {
 const currentRPS: RockPaperScissor = new RockPaperScissor();
 
 currentRPS.startGame()
+
+export {
+    RockPaperScissor
+}
