@@ -8,19 +8,6 @@ class RockPaperScissor {
         this.computerWins = 0;
         this.rpsChoices = ["rock", "paper", "scissor"];
     }
-
-    get currentRound() {
-        return this.currentRound;
-    }
-
-    get playerOneWins() {
-        return this.playerOneWins;
-    }
-
-    get computerWins() {
-        return this.computerWins;
-    }
-
     startGame() {
         while (this.currentRound < 5) {
             console.log(`Round ${this.currentRound + 1}`);
@@ -50,7 +37,6 @@ class RockPaperScissor {
         const randomChoice = Math.floor(Math.random() * this.rpsChoices.length);
         return this.rpsChoices[randomChoice].toLowerCase();
     }
-
     playRound(playerSelection, computerSelection) {
         let message = `Something went wrong :3`;
         switch (playerSelection.toLowerCase()) {
@@ -112,7 +98,6 @@ class RockPaperScissor {
         }
         return message;
     }
-
     endGameResults() {
         let gameWinner;
         if (this.playerOneWins > this.computerWins) {
@@ -131,8 +116,6 @@ class RockPaperScissor {
         Winner: ${gameWinner}
         `);
     }
-
-
 }
 exports.RockPaperScissor = RockPaperScissor;
 ;
