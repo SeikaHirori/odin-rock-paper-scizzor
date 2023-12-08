@@ -5,25 +5,27 @@ class RockPaperScissor {
     computerWins: number;
     rpsChoices: Array<string>;
 
+    maxRounds: number;
 
     constructor() {
         this.currentRound = 0;
         this.playerOneWins = 0;
         this.computerWins = 0;
-        this.rpsChoices = ["rock", "paper", "scissor"];
+        this.rpsChoices = ["rock", "paper", "scissor", "quit"];
+
+        this.maxRounds = 5; // FIXME: Temp value; Change this later as this should be changable by the player.
     }
 
     startGame(): any {
-        while (this.currentRound < 5) {
-            console.log(`Round ${this.currentRound + 1}`)
+        while (this.currentRound < this.maxRounds) {
+            console.log(`Round ${this.currentRound + 1}`);
 
-            let playerSelection = prompt(`What choice will you pick?`, "");
-            
+            let playerSelection: string | null = prompt(`What choice will you pick?`, "");
+    
             if (playerSelection === null) {
                 console.log(`User quit the game`);
                 return;
             }
-
 
             if (playerSelection.trim() === "") {
                 console.log("Input was empty.");
@@ -123,7 +125,7 @@ class RockPaperScissor {
         } else if (this.playerOneWins < this.computerWins) {
             gameWinner = "Computer";
         } else {
-            gameWinner = "No victor"
+            gameWinner = "No victor";
         }
 
         console.log(`Final Scores: \n

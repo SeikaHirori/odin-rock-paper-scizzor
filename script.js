@@ -6,10 +6,11 @@ class RockPaperScissor {
         this.currentRound = 0;
         this.playerOneWins = 0;
         this.computerWins = 0;
-        this.rpsChoices = ["rock", "paper", "scissor"];
+        this.rpsChoices = ["rock", "paper", "scissor", "quit"];
+        this.maxRounds = 5;
     }
     startGame() {
-        while (this.currentRound < 5) {
+        while (this.currentRound < this.maxRounds) {
             console.log(`Round ${this.currentRound + 1}`);
             let playerSelection = prompt(`What choice will you pick?`, "");
             if (playerSelection === null) {
