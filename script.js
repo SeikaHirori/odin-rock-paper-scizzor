@@ -9,30 +9,26 @@ class RockPaperScissor {
         this.rpsChoices = ["rock", "paper", "scissor", "quit"];
         this.maxRounds = 5;
     }
-    startGame() {
-        while (this.currentRound < this.maxRounds) {
-            console.log(`Round ${this.currentRound + 1}`);
-            let playerSelection = prompt(`What choice will you pick?`, "");
-            if (playerSelection === null) {
-                console.log(`User quit the game`);
-                return;
-            }
-            if (playerSelection.trim() === "") {
-                console.log("Input was empty.");
-                continue;
-            }
-            if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
-                playerSelection = playerSelection.toLowerCase();
-            }
-            else {
-                console.log(`Invalid input.`);
-                continue;
-            }
-            const computerSelection = this.getComputerChoice();
-            const results = this.playRound(playerSelection, computerSelection);
-            this.currentRound += 1;
+    startGame(playerSelection) {
+        console.log(`Round ${this.currentRound + 1}`);
+        if (playerSelection === null) {
+            console.log(`User quit the game`);
+            return;
         }
-        this.endGameResults();
+        if (playerSelection.trim() === "") {
+            console.log("Input was empty.");
+            return;
+        }
+        if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
+            playerSelection = playerSelection.toLowerCase();
+        }
+        else {
+            console.log(`Invalid input.`);
+            return;
+        }
+        const computerSelection = this.getComputerChoice();
+        const results = this.playRound(playerSelection, computerSelection);
+        this.currentRound += 1;
     }
     getComputerChoice() {
         const randomChoice = Math.floor(Math.random() * this.rpsChoices.length);
@@ -119,7 +115,7 @@ class RockPaperScissor {
     }
 }
 exports.RockPaperScissor = RockPaperScissor;
-;
 const currentRPS = new RockPaperScissor();
 currentRPS.startGame();
+const btnRock = document.querySelector(`#selection-rock`);
 //# sourceMappingURL=script.js.map

@@ -16,37 +16,36 @@ class RockPaperScissor {
         this.maxRounds = 5; // FIXME: Temp value; Change this later as this should be changable by the player.
     }
 
-    startGame(): any {
-        while (this.currentRound < this.maxRounds) {
-            console.log(`Round ${this.currentRound + 1}`);
+    startGame(playerSelection: string): any {
+        console.log(`Round ${this.currentRound + 1}`);
 
-            let playerSelection: string | null = prompt(`What choice will you pick?`, "");
-    
-            if (playerSelection === null) {
-                console.log(`User quit the game`);
-                return;
-            }
+        // let playerSelection: string | null = prompt(`What choice will you pick?`, "");
+        // Listen to the button picked for RPS on index.html
 
-            if (playerSelection.trim() === "") {
-                console.log("Input was empty.");
-                continue;
-            }
-
-            if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
-                playerSelection = playerSelection.toLowerCase();
-            } else {
-                console.log(`Invalid input.`)
-                continue;
-            }
-
-            const computerSelection: string = this.getComputerChoice()
-
-            const results: string = this.playRound(playerSelection, computerSelection);
-
-            this.currentRound += 1;
+        if (playerSelection === null) {
+            console.log(`User quit the game`);
+            return;
         }
 
-        this.endGameResults()
+        if (playerSelection.trim() === "") {
+            console.log("Input was empty.");
+            return;
+        }
+
+        if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
+            playerSelection = playerSelection.toLowerCase();
+        } else {
+            console.log(`Invalid input.`)
+            return;
+        }
+
+        const computerSelection: string = this.getComputerChoice()
+
+        const results: string = this.playRound(playerSelection, computerSelection);
+
+        this.currentRound += 1;
+        
+
     }
 
     getComputerChoice(): string {
@@ -135,11 +134,13 @@ class RockPaperScissor {
         Winner: ${gameWinner}
         `);
     }
-};
+}
 
 const currentRPS: RockPaperScissor = new RockPaperScissor();
 
 currentRPS.startGame()
+
+const btnRock = document.querySelector(`#selection-rock`);
 
 export {
     RockPaperScissor
