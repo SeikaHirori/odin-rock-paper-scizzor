@@ -1,3 +1,8 @@
+const ROCK: string = "rock";
+const PAPER: string = "paper";
+const SCISSOR: string = "scissor";
+const QUIT: string = "quit";
+
 
 class RockPaperScissor {
     currentRound: number;
@@ -138,10 +143,24 @@ class RockPaperScissor {
 
 const currentRPS: RockPaperScissor = new RockPaperScissor();
 
-currentRPS.startGame()
 
-const btnRock = document.querySelector(`#selection-rock`);
+// BUTTONS for users to select
+const btnRock: HTMLButtonElement | null = document.querySelector(`#selection-rock`);
+btnRock?.addEventListener('click', () => {
+    console.log("You selected rock!");
 
-export {
-    RockPaperScissor
-}
+
+});
+
+const btnPaper: HTMLButtonElement | null = document.querySelector('#selection-paper');
+btnPaper?.addEventListener('click', () => {
+    console.log("You selected paper!");
+});
+
+const btnScissor: HTMLButtonElement | null = document.querySelector('#selection-scissor');
+btnScissor?.addEventListener('click', () => {
+    console.log("You selected scissor!");
+});
+
+// currentRPS.startGame()
+

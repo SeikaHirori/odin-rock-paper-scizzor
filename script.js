@@ -1,6 +1,8 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RockPaperScissor = void 0;
+const ROCK = "rock";
+const PAPER = "paper";
+const SCISSOR = "scissor";
+const QUIT = "quit";
 class RockPaperScissor {
     constructor() {
         this.currentRound = 0;
@@ -114,8 +116,17 @@ class RockPaperScissor {
         `);
     }
 }
-exports.RockPaperScissor = RockPaperScissor;
 const currentRPS = new RockPaperScissor();
-currentRPS.startGame();
 const btnRock = document.querySelector(`#selection-rock`);
+btnRock === null || btnRock === void 0 ? void 0 : btnRock.addEventListener('click', () => {
+    console.log("You selected rock!");
+});
+const btnPaper = document.querySelector('#selection-paper');
+btnPaper === null || btnPaper === void 0 ? void 0 : btnPaper.addEventListener('click', () => {
+    console.log("You selected paper!");
+});
+const btnScissor = document.querySelector('#selection-scissor');
+btnScissor === null || btnScissor === void 0 ? void 0 : btnScissor.addEventListener('click', () => {
+    console.log("You selected scissor!");
+});
 //# sourceMappingURL=script.js.map

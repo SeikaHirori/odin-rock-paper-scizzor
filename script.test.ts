@@ -1,5 +1,5 @@
-import { describe, expect, test} from "@jest/globals";
-import { RockPaperScissor } from "./script";
+// import { describe, expect, test} from "@jest/globals";
+// import { RockPaperScissor } from "./script";
 
 
 // Writing tests later
