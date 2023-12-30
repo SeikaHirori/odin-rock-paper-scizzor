@@ -1,7 +1,7 @@
-const ROCK: string = "rock";
-const PAPER: string = "paper";
-const SCISSOR: string = "scissor";
-const QUIT: string = "quit";
+const optionRock: string = "rock";
+const optionPaper: string = "paper";
+const optionScissor: string = "scissor";
+const optionQuit: string = "quit";
 
 
 class RockPaperScissor {
@@ -16,12 +16,14 @@ class RockPaperScissor {
         this.currentRound = 0;
         this.playerOneWins = 0;
         this.computerWins = 0;
-        this.rpsChoices = ["rock", "paper", "scissor", "quit"];
+        // this.rpsChoices = ["rock", "paper", "scissor", "quit"]; // OLD: when playing from CLI
+        this.rpsChoices = ["rock", "paper", "scissor"];
+
 
         this.maxRounds = 5; // FIXME: Temp value; Change this later as this should be changable by the player.
     }
 
-    startGame(playerSelection: string): any {
+    cliStartGame(playerSelection: string): any {
         console.log(`Round ${this.currentRound + 1}`);
 
         // let playerSelection: string | null = prompt(`What choice will you pick?`, "");
@@ -53,11 +55,46 @@ class RockPaperScissor {
 
     }
 
+    htmlPlayGame(playerSelection: string): any {
+        console.log(`Round ${this.currentRound + 1}`);
+
+        // let playerSelection: string | null = prompt(`What choice will you pick?`, "");
+        // Listen to the button picked for RPS on index.html
+
+        if (playerSelection === null) {
+            console.log(`User quit the game`);
+            return;
+        }
+
+        if (playerSelection.trim() === "") {
+            console.log("Input was empty.");
+            return;
+        }
+
+        if (this.rpsChoices.includes(playerSelection.toLowerCase())) {
+            playerSelection = playerSelection.toLowerCase();
+        } else {
+            console.log(`Invalid input.`)
+            return;
+        }
+
+        const computerSelection: string = this.getComputerChoice()
+
+        const results: string = this.playRound(playerSelection, computerSelection);
+
+        this.currentRound += 1;
+
+    }
+
     getComputerChoice(): string {
 
-        const randomChoice: number = Math.floor(Math.random() * this.rpsChoices.length);
+        const randomInt: number = Math.floor(Math.random() * this.rpsChoices.length);
 
-        return this.rpsChoices[randomChoice].toLowerCase();
+        const computerChoice: string = this.rpsChoices[randomInt].toLowerCase()
+
+        console.log(`Computer chose: ${computerChoice}`);
+
+        return computerChoice;
     }
 
     playRound(playerSelection: string, computerSelection: string): string {
@@ -148,8 +185,7 @@ const currentRPS: RockPaperScissor = new RockPaperScissor();
 const btnRock: HTMLButtonElement | null = document.querySelector(`#selection-rock`);
 btnRock?.addEventListener('click', () => {
     console.log("You selected rock!");
-
-
+    currentRPS.htmlPlayGame(optionPaper);
 });
 
 const btnPaper: HTMLButtonElement | null = document.querySelector('#selection-paper');
