@@ -52,6 +52,11 @@ class RockPaperScissor {
         const computerSelection = this.getComputerChoice();
         const results = this.playRound(playerSelection, computerSelection);
         this.currentRound += 1;
+        this.updateScoreboard();
+        if (this.currentRound === this.maxRounds) {
+            console.log("GAME SET!");
+        }
+        ;
     }
     getComputerChoice() {
         const randomInt = Math.floor(Math.random() * this.rpsChoices.length);
@@ -118,9 +123,18 @@ class RockPaperScissor {
                 console.log(`Something went wrong.`);
                 break;
         }
+        console.log(`Round result: ${message}`);
         return message;
     }
-    endGameResults() {
+    updateScoreboard() {
+        const templatePlayer = "Player 1";
+        const templateComputer = "Computer";
+        const scorePlayer = document.querySelector('#score-player');
+        scorePlayer.innerText = `${templatePlayer}: ${this.playerOneWins}`;
+        const scoreComputer = document.querySelector('#score-computer');
+        scoreComputer.innerText = `${templateComputer}: ${this.computerWins}`;
+    }
+    cliEndGameResults() {
         let gameWinner;
         if (this.playerOneWins > this.computerWins) {
             gameWinner = "Player";
@@ -138,19 +152,40 @@ class RockPaperScissor {
         Winner: ${gameWinner}
         `);
     }
+    htmlEndGameResults() {
+        let gameWinner;
+        if (this.playerOneWins > this.computerWins) {
+            gameWinner = "Player";
+        }
+        else if (this.playerOneWins < this.computerWins) {
+            gameWinner = "Computer";
+        }
+        else {
+            gameWinner = "No victor";
+        }
+        console.log(`Final Scores: \n
+        Player: ${this.playerOneWins} 
+        Computer: ${this.computerWins}
+
+        Winner: ${gameWinner}
+        `);
+        return gameWinner;
+    }
 }
 const currentRPS = new RockPaperScissor();
 const btnRock = document.querySelector(`#selection-rock`);
 btnRock === null || btnRock === void 0 ? void 0 : btnRock.addEventListener('click', () => {
     console.log("You selected rock!");
-    currentRPS.htmlPlayGame(optionPaper);
+    currentRPS.htmlPlayGame(optionRock);
 });
 const btnPaper = document.querySelector('#selection-paper');
 btnPaper === null || btnPaper === void 0 ? void 0 : btnPaper.addEventListener('click', () => {
     console.log("You selected paper!");
+    currentRPS.htmlPlayGame(optionPaper);
 });
 const btnScissor = document.querySelector('#selection-scissor');
 btnScissor === null || btnScissor === void 0 ? void 0 : btnScissor.addEventListener('click', () => {
     console.log("You selected scissor!");
+    currentRPS.htmlPlayGame(optionScissor);
 });
 //# sourceMappingURL=script.js.map

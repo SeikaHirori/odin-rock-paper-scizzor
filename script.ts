@@ -55,7 +55,7 @@ class RockPaperScissor {
 
     }
 
-    htmlPlayGame(playerSelection: string): any {
+    htmlPlayGame(playerSelection: string): void {
         console.log(`Round ${this.currentRound + 1}`);
 
         // let playerSelection: string | null = prompt(`What choice will you pick?`, "");
@@ -78,11 +78,17 @@ class RockPaperScissor {
             return;
         }
 
-        const computerSelection: string = this.getComputerChoice()
+        const computerSelection: string = this.getComputerChoice();
 
         const results: string = this.playRound(playerSelection, computerSelection);
 
         this.currentRound += 1;
+
+        this.updateScoreboard();
+
+        if (this.currentRound === this.maxRounds) {
+            console.log("GAME SET!");
+        };
 
     }
 
@@ -156,10 +162,25 @@ class RockPaperScissor {
                 break;
         }
 
+        console.log(`Round result: ${message}`)
+
         return message;
     }
 
-    endGameResults():void {
+    updateScoreboard(): void {
+        const templatePlayer: string = "Player 1";
+        const templateComputer: string = "Computer"
+
+        // DOM: Update Player's score // RFER #1
+        const scorePlayer: HTMLHeadingElement = document.querySelector<HTMLHeadingElement>('#score-player')!;
+        scorePlayer.innerText = `${templatePlayer}: ${this.playerOneWins}`;
+
+        // DOM: Update Computer's score
+        const scoreComputer: HTMLHeadElement = document.querySelector<HTMLHeadingElement>('#score-computer')!;
+        scoreComputer.innerText = `${templateComputer}: ${this.computerWins}`;
+    }
+
+    cliEndGameResults(): void {
         let gameWinner: string;
         if (this.playerOneWins > this.computerWins) {
             gameWinner = "Player";
@@ -176,27 +197,52 @@ class RockPaperScissor {
         Winner: ${gameWinner}
         `);
     }
+
+    htmlEndGameResults():string {
+        let gameWinner: string;
+        if (this.playerOneWins > this.computerWins) {
+            gameWinner = "Player";
+        } else if (this.playerOneWins < this.computerWins) {
+            gameWinner = "Computer";
+        } else {
+            gameWinner = "No victor";
+        }
+
+        console.log(`Final Scores: \n
+        Player: ${this.playerOneWins} 
+        Computer: ${this.computerWins}
+
+        Winner: ${gameWinner}
+        `);
+
+        return gameWinner;
+    }
 }
 
+// Store Game stats
 const currentRPS: RockPaperScissor = new RockPaperScissor();
+
+// Check game score
+
 
 
 // BUTTONS for users to select
 const btnRock: HTMLButtonElement | null = document.querySelector(`#selection-rock`);
 btnRock?.addEventListener('click', () => {
     console.log("You selected rock!");
-    currentRPS.htmlPlayGame(optionPaper);
+    currentRPS.htmlPlayGame(optionRock);
 });
 
 const btnPaper: HTMLButtonElement | null = document.querySelector('#selection-paper');
 btnPaper?.addEventListener('click', () => {
     console.log("You selected paper!");
+    currentRPS.htmlPlayGame(optionPaper);
 });
 
 const btnScissor: HTMLButtonElement | null = document.querySelector('#selection-scissor');
 btnScissor?.addEventListener('click', () => {
     console.log("You selected scissor!");
+    currentRPS.htmlPlayGame(optionScissor);
 });
 
-// currentRPS.startGame()
 
