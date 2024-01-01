@@ -133,6 +133,9 @@ class RockPaperScissor {
         scorePlayer.innerText = `${templatePlayer}: ${this.playerOneWins}`;
         const scoreComputer = document.querySelector('#score-computer');
         scoreComputer.innerText = `${templateComputer}: ${this.computerWins}`;
+        const pageRound = document.querySelector('#current-round');
+        const templateTextRound = "Round";
+        pageRound.innerText = `${templateTextRound}: ${this.currentRound}`;
     }
     cliEndGameResults() {
         let gameWinner;
@@ -163,13 +166,16 @@ class RockPaperScissor {
         else {
             gameWinner = "No victor";
         }
-        console.log(`Final Scores: \n
-        Player: ${this.playerOneWins} 
-        Computer: ${this.computerWins}
-
+        const announcementText = `Final Scores: \n
+        Player: ${this.playerOneWins}\n 
+        Computer: ${this.computerWins}\n
+        \n
         Winner: ${gameWinner}
-        `);
-        return gameWinner;
+        `;
+        const announcementHeading = document.createElement('h1');
+        announcementHeading.innerText = announcementText;
+        const gameSet = document.querySelector('#game-set');
+        gameSet.appendChild(announcementHeading);
     }
 }
 const currentRPS = new RockPaperScissor();

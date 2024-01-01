@@ -176,8 +176,15 @@ class RockPaperScissor {
         scorePlayer.innerText = `${templatePlayer}: ${this.playerOneWins}`;
 
         // DOM: Update Computer's score
-        const scoreComputer: HTMLHeadElement = document.querySelector<HTMLHeadingElement>('#score-computer')!;
+        const scoreComputer: HTMLHeadingElement = document.querySelector<HTMLHeadingElement>('#score-computer')!;
         scoreComputer.innerText = `${templateComputer}: ${this.computerWins}`;
+        
+        // DOM: Update current round
+        const pageRound: HTMLHeadingElement = document.querySelector<HTMLHeadingElement>('#current-round')!;
+
+        const templateTextRound: string = "Round"
+        pageRound.innerText = `${templateTextRound}: ${this.currentRound}`;
+
     }
 
     cliEndGameResults(): void {
@@ -198,7 +205,7 @@ class RockPaperScissor {
         `);
     }
 
-    htmlEndGameResults():string {
+    htmlEndGameResults(): void {
         let gameWinner: string;
         if (this.playerOneWins > this.computerWins) {
             gameWinner = "Player";
@@ -208,14 +215,20 @@ class RockPaperScissor {
             gameWinner = "No victor";
         }
 
-        console.log(`Final Scores: \n
-        Player: ${this.playerOneWins} 
-        Computer: ${this.computerWins}
-
+        const announcementText: string = `Final Scores: \n
+        Player: ${this.playerOneWins}\n 
+        Computer: ${this.computerWins}\n
+        \n
         Winner: ${gameWinner}
-        `);
+        `;
 
-        return gameWinner;
+        const announcementHeading: HTMLHeadingElement = document.createElement('h1');
+        announcementHeading.innerText = announcementText;
+
+        const gameSet: HTMLDivElement = document.querySelector<HTMLDivElement>('#game-set')!;
+
+        // this is not showing up
+        gameSet.appendChild(announcementHeading);
     }
 }
 
