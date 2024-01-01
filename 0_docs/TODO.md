@@ -12,8 +12,8 @@
         - [x] Buttons need to "playRound()"
             - Need to revamp "startGame()"
                 - Revamped to use "htmlPlayGame()"
-    - [ ] Add a div for displaying results and change all of your console.logs into DOM methods.
-    - [ ] Display the running score, and announce a winner of the game once one player reaches 5 points.
+    - [x] Add a div for displaying results and change all of your console.logs into DOM methods.
+    - [x] Display the running score, and announce a winner of the game once one player reaches 5 points.
         - Need to add WINNER name
     - [ ] You will likely have to refactor (rework/rewrite) your original code to make it work for this. That’s OK! Reworking old code is an important part of a programmer’s life.
 
@@ -25,3 +25,7 @@
     - [ ] Let’s push our main branch into our remote repo by running git push origin main . Go to your GitHub repo and you’ll see that our main branch will have all the changes and commits you made to the rps-ui branch. Congratulations! You’ve successfully pushed your first feature into your production branch!
     - [ ] Now that we have all our code in the main branch, we don’t really need our rps-ui branch anymore. Let’s do some cleanup, both locally and in the remote repo. Delete the branch from our local repo with git branch -d rps-ui and also delete it from the remote repo on GitHub with git push origin --delete rps-ui. Congrats, we’re all done with our cleanup!
 5. [ ] Make sure to publish the project on GitHub Pages and add a live preview link in the project lesson.
+
+
+# Personal Objective
+- [ ] When function "switchToEndScreen()" is called, remove the element id "RPS-choices"
